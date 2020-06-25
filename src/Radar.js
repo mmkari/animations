@@ -160,18 +160,22 @@ const StyledNoiseMemoized = React.memo(() => {
   return <StyledNoise />;
 });
 
-const vMax = 3; // max velocity x or y
+const vMax = 5; // max velocity x or y
+const aMax = 3; // max acceleration x or y
 const rotationTime = 4000; // ms
 const angularSpeed = 360.0 / rotationTime;
-const dotSize = 4; // px width & height
+const dotSize = 4; // % width & height
+const dMax = 100 - 0.5 * dotSize; // max displacement from center
 const Radar = ({ height }) => {
   const [position, setPosition] = useState({ x: 30, y: 20 }); // Real-time position
   const [velocity, setVelocity] = useState({ x: 1, y: 0 }); // Real-time velocity
+  const [acceleration, setAcceleration] = useState({ x: 0, y: 0 });
 
   const [detectedPosition, setDetectedPosition] = useState(null);
   // const [radarAngle, setRadarAngle] = useState(0);
 
   const [startMs, setStartMs] = useState(null);
+  const scalingFactor = height / 200;
 
   // effect to collect start ms Date into memory
   useEffect(() => {
@@ -183,15 +187,24 @@ const Radar = ({ height }) => {
     const moveDot = () => {
       const newX = position.x + velocity.x;
       const newY = position.y + velocity.y;
+      const hitX = Math.abs(newX) > dMax; // dot hit left/right wall -> cancel velocity
+      const hitY = Math.abs(newY) > dMax; // dot hit top/bottom wall -> cancel velocity
       const newPosition = {
-        x: Math.abs(newX) > 100 ? Math.sign(newX) * 100 : newX,
-        y: Math.abs(newY) > 100 ? Math.sign(newY) * 100 : newY,
+        x: hitX ? Math.sign(newX) * dMax : newX,
+        y: hitY ? Math.sign(newY) * dMax : newY,
       };
       setPosition(newPosition);
-      // update velocity
+      // update velocity (cancel if wall hit so changes direction faster)
+      const newVX = hitX ? 0 : velocity.x + acceleration.x;
+      const newVY = hitY ? 0 : velocity.y + acceleration.y;
       setVelocity({
-        x: Math.floor(Math.random() * 2 * vMax + 1) - vMax,
-        y: Math.floor(Math.random() * 2 * vMax + 1) - vMax,
+        x: newVX > vMax ? Math.sign(newVX) * vMax : newVX,
+        y: newVY > vMax ? Math.sign(newVY) * vMax : newVY,
+      });
+      // update acceleration
+      setAcceleration({
+        x: Math.round(Math.random() * 2 * aMax) - aMax,
+        y: Math.round(Math.random() * 2 * aMax) - aMax,
       });
     };
     const interval = setInterval(moveDot, 500);
@@ -267,12 +280,21 @@ const Radar = ({ height }) => {
             );
           })}
           <Scanner />
-          <Dot x={position.x + 0.5 * height} y={position.y + 0.5 * height} />
+          <Dot
+            x={(position.x - 0.5 * dotSize) * scalingFactor + 0.5 * height}
+            y={(position.y - 0.5 * dotSize) * scalingFactor + 0.5 * height}
+          />
 
           {detectedPosition && (
             <DetectionPoint
-              x={detectedPosition.x + 0.5 * height}
-              y={detectedPosition.y + 0.5 * height}
+              x={
+                (detectedPosition.x - 0.5 * dotSize) * scalingFactor +
+                0.5 * height
+              }
+              y={
+                (detectedPosition.y - 0.5 * dotSize) * scalingFactor +
+                0.5 * height
+              }
             />
           )}
           <StyledNoiseMemoized />

@@ -103,7 +103,7 @@ const Examples = ({ className }) => {
           <FlagAnimatedSvg height={300} />
         </AnimationOption>
         <AnimationOption name="radar" selected={animation}>
-          <Radar height={200} />
+          <Radar height={400} />
         </AnimationOption>
       </AnimationArea>
     </div>
