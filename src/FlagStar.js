@@ -1,0 +1,28 @@
+import * as React from 'react';
+
+const FlagStar = () => {
+  return (
+    <div className="FlagStar">
+      {/* <svg viewBox="0 0 184.14194 175.12938">
+        <path
+          d="m 92.070966,0 c 7.245648,22.296938 14.491294,44.593876 21.736944,66.890813 23.44467,8.86e-4 46.88935,0.0018 70.33402,0.0027 -18.96662,13.781153 -37.93324,27.562307 -56.89985,41.34346 7.24396,22.29748 14.48792,44.59497 21.73188,66.89245 C 130.00629,161.34967 111.03863,147.56995 92.070967,133.79023 73.103306,147.56995 54.135645,161.34967 35.167984,175.12939 42.411943,152.8319 49.655902,130.53441 56.899861,108.23693 37.933241,94.455776 18.966621,80.674626 1.476087e-6,66.893475 23.444678,66.892587 46.889354,66.891699 70.33403,66.890811 77.579676,44.593874 84.825321,22.296937 92.070966,0 Z"
+          strokeWidth="0.9"
+          fill="orange"
+        />
+      </svg> */}
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184.1 175.1">
+        <path
+          strokeWidth="0.9"
+          d="m92.1 0c7.2 22.3 14.5 44.6 21.7 66.9 23.4 0 46.9 0 70.3 0-19 13.8-37.9 27.6-56.9 41.3 7.2 22.3 14.5 44.6 21.7 66.9C130 161.3 111 147.6 92.1 133.8 73.1 147.6 54.1 161.3 35.2 175.1 42.4 152.8 49.7 130.5 56.9 108.2 37.9 94.5 19 80.7 0 66.9 23.4 66.9 46.9 66.9 70.3 66.9 77.6 44.6 84.8 22.3 92.1 0Z"
+          fill="orange"
+        />
+      </svg>
+    </div>
+  );
+};
+// stroke={colorOutline}
+// fill={selected ? color : "none"}
+
+/* <svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><image width='20' height='20' xlink:href='image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODQuMSAxNzUuMSI+DQogICAgICAgIDxwYXRoDQogICAgICAgICAgc3Ryb2tlV2lkdGg9IjAuOSINCiAgICAgICAgICBkPSJtOTIuMSAwYzcuMiAyMi4zIDE0LjUgNDQuNiAyMS43IDY2LjkgMjMuNCAwIDQ2LjkgMCA3MC4zIDAtMTkgMTMuOC0zNy45IDI3LjYtNTYuOSA0MS4zIDcuMiAyMi4zIDE0LjUgNDQuNiAyMS43IDY2LjlDMTMwIDE2MS4zIDExMSAxNDcuNiA5Mi4xIDEzMy44IDczLjEgMTQ3LjYgNTQuMSAxNjEuMyAzNS4yIDE3NS4xIDQyLjQgMTUyLjggNDkuNyAxMzAuNSA1Ni45IDEwOC4yIDM3LjkgOTQuNSAxOSA4MC43IDAgNjYuOSAyMy40IDY2LjkgNDYuOSA2Ni45IDcwLjMgNjYuOSA3Ny42IDQ0LjYgODQuOCAyMi4zIDkyLjEgMFoiDQogICAgICAgICAgZmlsbD0ib3JhbmdlIg0KICAgICAgICAvPg0KICAgICAgPC9zdmc+'/></svg> */
+
+export default FlagStar;
